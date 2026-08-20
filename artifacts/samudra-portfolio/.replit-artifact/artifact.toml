@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Samudra Kar Portfolio"
+description = "A premium interactive portfolio for Samudra Kar, a UI/UX designer and computer science student blending interface design with frontend engineering."
+version = "1.0.0"
+id = "artifacts/samudra-portfolio"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24595
+
+[services.development]
+run = "pnpm --filter @workspace/samudra-portfolio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/samudra-portfolio", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/samudra-portfolio/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24595"
+BASE_PATH = "/"

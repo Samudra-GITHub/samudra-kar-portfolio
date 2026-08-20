@@ -1,0 +1,96 @@
+I want to upgrade my existing personal portfolio website into a highly interactive, modern, and professional experience.
+
+The main goal is to make the website feel more dynamic and immersive rather than like a traditional static portfolio.
+
+### Core Requirements
+
+* Add smooth, sophisticated scroll-based animations throughout the website.
+* Elements should react and animate as the user scrolls through different sections.
+* Use animations such as:
+
+  * Elements moving, scaling, rotating, fading, or transforming based on scroll position.
+  * Parallax effects for backgrounds, images, text, and decorative elements.
+  * Sections transitioning smoothly into one another.
+  * Text and headings revealing or transforming as they enter the viewport.
+  * Objects following different movement paths or responding to scroll progress.
+* Add interactive cursor-based effects where appropriate.
+* Elements should react naturally when the user moves or hovers the cursor over them.
+* Include subtle magnetic effects, hover transformations, tilt effects, depth effects, or cursor-following interactions where they improve the experience.
+* Buttons, cards, project thumbnails, navigation elements, and other interactive components should feel responsive and alive.
+* Avoid excessive animation. Everything should remain elegant, intentional, smooth, and professional.
+
+### Design Direction
+
+I want the website to feel like a premium modern developer/creative portfolio that could realistically be used as a professional portfolio.
+
+The visual experience should be:
+
+* Modern
+* Minimal but visually impressive
+* Smooth
+* Interactive
+* Professional
+* Technically sophisticated
+* Responsive
+* Fast and fluid
+
+The animations should support the content rather than distract from it.
+
+### Scrolling Experience
+
+I specifically want the website to have the kind of interaction seen on high-quality modern portfolio and product websites, where scrolling feels like part of the experience.
+
+For example:
+
+* Hero elements can move subtly based on scroll.
+* Sections can reveal themselves progressively.
+* Project cards can animate into position.
+* Images can have parallax movement.
+* Text can transition or split/reveal as the user scrolls.
+* Background elements can move at different speeds.
+* Certain sections can have pinned or sticky elements while surrounding content moves.
+* Transitions between sections should feel connected rather than abrupt.
+* Some elements can rotate, scale, or change position according to scroll progress.
+
+### Cursor Interaction
+
+I want meaningful cursor interactions such as:
+
+* Subtle cursor-following elements.
+* Magnetic buttons or links.
+* Hover-based card movement or tilt.
+* Elements reacting to cursor position.
+* Interactive project cards.
+* Smooth hover transitions.
+* Subtle visual feedback when interacting with important elements.
+
+These effects should remain polished and should not make the website difficult to use.
+
+### Technology and Implementation
+
+Keep the existing website architecture and functionality intact wherever possible.
+
+The interactive frontend should be implemented using reliable modern web technologies and animation libraries where they make sense.
+
+Prioritize:
+
+* Smooth performance
+* Clean and maintainable code
+* Responsive behavior
+* Accessibility
+* Mobile compatibility
+* Proper handling of reduced-motion preferences
+* Minimal unnecessary dependencies
+* Avoiding animation techniques that cause excessive CPU/GPU usage
+
+Do not add animations simply for the sake of adding animations. Every interaction should have a clear visual or UX purpose.
+
+### Important
+
+Analyze the existing website structure first and then improve it rather than completely redesigning everything without reason.
+
+Preserve the existing personal information, projects, sections, branding, and functionality unless something clearly needs improvement.
+
+The final result should feel like an upgraded version of my current portfolio, not a completely unrelated website.
+
+I want the finished website to give visitors the feeling that they are interacting with a carefully designed digital experience rather than simply scrolling through a static webpage.
