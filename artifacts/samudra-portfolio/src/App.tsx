@@ -41,35 +41,24 @@ const projects: Project[] = [
   {
     id: '01',
     number: '01',
-    title: 'Pioneer',
-    type: 'Product design · Frontend',
-    year: '2024',
-    description: 'A calmer way for ambitious teams to turn early thoughts into work worth shipping.',
-    tags: ['Product thinking', 'UI systems', 'React'],
+    title: 'AkashaLens',
+    type: 'ISRO Hackathon 2026 · AI/ML',
+    year: '2026',
+    description: 'A generative AI system for cloud removal and reconstruction in LISS-IV satellite imagery, designed for agriculture and disaster management.',
+    tags: ['Python', 'OpenCV', 'NumPy', 'Sentinel-2', 'AI/ML'],
     accent: 'lime',
-    detail: 'Pioneer is an exploration in making collaborative planning feel less like project management and more like a shared studio wall. I shaped the interaction model, visual language, and a responsive React prototype.',
+    detail: 'AkashaLens uses spatial, spectral, and temporal reconstruction to recover obscured terrain, with confidence maps that show reliability region by region.',
   },
   {
     id: '02',
     number: '02',
-    title: 'Asteria',
-    type: 'Brand experience · UI/UX',
-    year: '2023',
-    description: 'Making complex climate data legible, tactile, and a little more hopeful.',
-    tags: ['Research', 'Art direction', 'Prototyping'],
+    title: 'SkyCast',
+    type: 'Web app · Full stack',
+    year: '2024',
+    description: 'A weather forecasting web app with live conditions and multi-day forecasts, built to make weather data immediately scannable.',
+    tags: ['Python', 'Flask', 'OpenWeatherMap', 'HTML/CSS/JS'],
     accent: 'coral',
-    detail: 'Asteria turns a dense climate dataset into an editorial, exploratory experience. The work moved from information architecture to a set of tactile data moments that reward curiosity without hiding the facts.',
-  },
-  {
-    id: '03',
-    number: '03',
-    title: 'Frame',
-    type: 'Frontend engineering · Tool',
-    year: '2023',
-    description: 'A tiny, opinionated toolkit for building interfaces with rhythm and restraint.',
-    tags: ['TypeScript', 'Design systems', 'Motion'],
-    accent: 'blue',
-    detail: 'Frame is a personal front-end playground: small utilities, component experiments, and motion studies built around the belief that the details are not decoration. They are the interface.',
+    detail: 'SkyCast combines a clean, fast interface with a Flask server and the OpenWeatherMap API so current conditions and forecast context can be understood at a glance.',
   },
 ];
 
@@ -146,7 +135,7 @@ function Header({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen: (op
         </nav>
         <div className="desktop-only flex items-center gap-3">
           <span className="h-1.5 w-1.5 animate-[pulseDot_2s_ease-in-out_infinite] rounded-full bg-primary" />
-          <span className="mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Available for select work</span>
+           <span className="mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Open to UI/UX internships</span>
         </div>
         <button
           type="button"
@@ -198,7 +187,7 @@ function Hero() {
             </h1>
             <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4 reveal-hero-3">
               <p className="max-w-[390px] text-sm leading-6 text-muted-foreground">
-                Computer science student, UI/UX designer, and frontend engineer. I work where design thinking meets technical execution.
+                3rd-year B.Tech CSE student at Chanakya University, UI/UX designer, and frontend engineer. I work where design thinking meets technical execution.
               </p>
               <button
                 type="button"
@@ -397,10 +386,10 @@ function About() {
         <div id="about-body" data-reveal className={`grid gap-14 reveal ${isVisible ? 'is-visible' : ''} md:grid-cols-[1.1fr_.9fr]`}>
           <div>
             <p className="max-w-2xl text-2xl leading-[1.25] tracking-[-.04em] text-foreground md:text-4xl">
-              I&apos;m a computer science student based in Bangalore, interested in the space where a good idea gets its hands dirty.
+               I live at the intersection of design thinking and technical execution.
             </p>
             <p className="mt-7 max-w-xl text-sm leading-7 text-muted-foreground">
-              My practice moves between product design, frontend engineering, and the little decisions that make an interface feel considered. I care about systems that stay coherent as they grow, and experiences that leave people with a bit more clarity than they arrived with.
+               I design interfaces in Figma, build them in code, and deploy them with FastAPI. That dual fluency means I don&apos;t just hand off a mockup — I understand what it takes to ship it. My interests also include cybersecurity, AI, photography, Linux, and open source.
             </p>
             <button type="button" onClick={() => scrollToSection('contact')} className="lime-link mt-9 inline-flex items-center gap-2 text-sm font-medium" data-testid="button-about-contact">Let&apos;s make something <ArrowUpRight size={16} /></button>
           </div>
@@ -468,7 +457,7 @@ function Contact() {
             <div className="eyebrow text-primary-foreground/65">04 / Start a conversation</div>
             <h2 className="mt-6 max-w-3xl text-[clamp(3.3rem,8vw,8rem)] font-semibold leading-[.85] tracking-[-.09em]">Have a good<br /><span className="text-primary-foreground/40">problem?</span></h2>
             <p className="mt-8 max-w-md text-sm leading-6 text-primary-foreground/70">Tell me what you&apos;re working on, what&apos;s stuck, or what you&apos;re curious about. I&apos;ll get back to you soon.</p>
-            <a href="mailto:samudra.kar@gmail.com" className="mt-8 inline-flex items-center gap-3 border-b border-primary-foreground/45 pb-2 text-sm font-medium transition-colors hover:border-primary-foreground" data-testid="link-email"><Mail size={17} /> samudra.kar@gmail.com <ArrowUpRight size={15} /></a>
+             <a href="mailto:samudrakar8@gmail.com" className="mt-8 inline-flex items-center gap-3 border-b border-primary-foreground/45 pb-2 text-sm font-medium transition-colors hover:border-primary-foreground" data-testid="link-email"><Mail size={17} /> samudrakar8@gmail.com <ArrowUpRight size={15} /></a>
           </div>
           <div className="border border-primary-foreground/30 bg-primary-foreground/10 p-6 backdrop-blur-sm md:p-8">
             {sent ? (
@@ -490,9 +479,9 @@ function Contact() {
         <div className="mt-24 flex flex-col gap-7 border-t border-primary-foreground/25 pt-5 md:flex-row md:items-center md:justify-between">
           <span className="mono text-[10px] uppercase tracking-[.15em] text-primary-foreground/60">Samudra Kar / 2024—25</span>
           <div className="flex items-center gap-5">
-            <a href="https://www.linkedin.com/in/samudrakar/" target="_blank" rel="noreferrer" className="text-primary-foreground/70 transition-colors hover:text-primary-foreground" aria-label="Samudra on LinkedIn" data-testid="link-linkedin"><Linkedin size={17} /></a>
-            <a href="https://github.com/samudrakar" target="_blank" rel="noreferrer" className="text-primary-foreground/70 transition-colors hover:text-primary-foreground" aria-label="Samudra on GitHub" data-testid="link-github"><Github size={17} /></a>
-            <a href="https://www.instagram.com/samudrakar/" target="_blank" rel="noreferrer" className="text-primary-foreground/70 transition-colors hover:text-primary-foreground" aria-label="Samudra on Instagram" data-testid="link-instagram"><Instagram size={17} /></a>
+             <a href="https://www.linkedin.com/in/samudra-kar-a495951b5/" target="_blank" rel="noreferrer" className="text-primary-foreground/70 transition-colors hover:text-primary-foreground" aria-label="Samudra on LinkedIn" data-testid="link-linkedin"><Linkedin size={17} /></a>
+             <a href="https://github.com/Samudra-GITHub" target="_blank" rel="noreferrer" className="text-primary-foreground/70 transition-colors hover:text-primary-foreground" aria-label="Samudra on GitHub" data-testid="link-github"><Github size={17} /></a>
+             <a href="https://www.instagram.com/samudra_kar" target="_blank" rel="noreferrer" className="text-primary-foreground/70 transition-colors hover:text-primary-foreground" aria-label="Samudra on Instagram" data-testid="link-instagram"><Instagram size={17} /></a>
           </div>
           <button type="button" onClick={() => scrollToSection('top')} className="flex items-center gap-2 self-start text-xs text-primary-foreground/70 transition-colors hover:text-primary-foreground md:self-auto" data-testid="button-back-top">Back to top <ArrowUpRight size={15} /></button>
         </div>
