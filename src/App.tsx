@@ -1,10 +1,11 @@
-import { type FormEvent, useEffect, useRef, useState } from 'react';
+import { type FormEvent, useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ArrowUpRight, BrainCircuit, CheckCircle2, ChevronDown, Code2,
   Download, Github, Instagram, Linkedin, Mail, MapPin, Menu,
   MoveRight, Palette, Send, Sparkles, Terminal, X,
 } from 'lucide-react';
+import emailjs from "@emailjs/browser";
 
 // Temporarily commented out to fix broken imports
 // import { ErrorBoundary } from '@/components/error-boundary';
@@ -406,11 +407,53 @@ function Journey() {
 }
 
 function Contact() {
+  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSent(true);
+  const [formData, setFormData] = useState({
+    from_name: '',
+    reply_to: '',
+    business_name: '',
+    website_type: '',
+    budget: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
   };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setLoading(true);
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formData,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      
+      setSent(true);
+      setFormData({
+        from_name: '',
+        reply_to: '',
+        business_name: '',
+        website_type: '',
+        budget: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Something went wrong while sending your request. Please try again or email directly.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="section reveal" id="contact" data-section="contact">
       <div className="section-head">
@@ -433,11 +476,18 @@ function Contact() {
         </div>
         <div className="contact-form glass-card">
           {sent ? (
-            <div className="success-panel" role="status" data-testid="status-contact-success">
-              <CheckCircle2 size={27} />
-              <strong>Message received.</strong>
-              <span>This demo form is front-end only. For a real conversation, email me directly at hi.samsstudio@gmail.com.</span>
-              <button type="button" data-testid="button-send-another" onClick={() => setSent(false)}>Send another message</button>
+            <div className="studio-success" role="status" data-testid="status-contact-success">
+              <CheckCircle2 size={32} />
+              <strong>Project request received.</strong>
+              <span>Thanks for reaching out to Sam's Studio. I'll review your project and reply within 24 hours.</span>
+              <button 
+                type="button" 
+                className="button button-ghost" 
+                data-testid="button-send-another" 
+                onClick={() => setSent(false)}
+              >
+                Send another request
+              </button>
             </div>
           ) : (
             <>
@@ -447,13 +497,38 @@ function Contact() {
               </div>
               <form onSubmit={handleSubmit} data-testid="form-contact">
                 <div className="form-grid">
-                  <div className="field"><label htmlFor="name">Your name</label><input id="name" name="name" required placeholder="How should I address you?" data-testid="input-name" /></div>
-                  <div className="field"><label htmlFor="email">Email address</label><input id="email" name="email" type="email" required placeholder="you@company.com" data-testid="input-email" /></div>
-                  <div className="field full"><label htmlFor="subject">Subject</label><input id="subject" name="subject" placeholder="A project, a role, a question..." data-testid="input-subject" /></div>
-                  <div className="field full"><label htmlFor="message">Message</label><textarea id="message" name="message" required placeholder="Tell me what you're imagining..." data-testid="input-message" /></div>
+                  <div className="field">
+                    <label htmlFor="from_name">Your Name</label>
+                    <input id="from_name" name="from_name" required placeholder="How should I address you?" value={formData.from_name} onChange={handleChange} />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="reply_to">Email Address</label>
+                    <input id="reply_to" name="reply_to" type="email" required placeholder="you@company.com" value={formData.reply_to} onChange={handleChange} />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="business_name">Business Name</label>
+                    <input id="business_name" name="business_name" placeholder="Company or project name" value={formData.business_name} onChange={handleChange} />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="website_type">Website Type</label>
+                    <input id="website_type" name="website_type" placeholder="e.g. Landing Page, E-commerce" value={formData.website_type} onChange={handleChange} />
+                  </div>
+                  <div className="field full">
+                    <label htmlFor="budget">Budget</label>
+                    <input id="budget" name="budget" placeholder="e.g. ₹15,000+" value={formData.budget} onChange={handleChange} />
+                  </div>
+                  <div className="field full">
+                    <label htmlFor="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="Tell me about your business..." value={formData.message} onChange={handleChange} />
+                  </div>
                 </div>
-                <button className="button button-primary form-submit" type="submit" data-testid="button-submit-contact">
-                  Send message <Send size={14} />
+                <button 
+                  className="button button-primary form-submit" 
+                  type="submit" 
+                  disabled={loading}
+                  data-testid="button-submit-contact"
+                >
+                  {loading ? "Sending Project Request..." : <>Send Project Request <Send size={14} /></>}
                 </button>
               </form>
             </>

@@ -105,26 +105,26 @@ export function StudioSection() {
         </article>
       </div>
 
-      {/* ─── EXTRA: WHY SAM'S STUDIO? ─── */}
-      <div className="studio-why studio-reveal">
-        <div className="glass-card studio-stat-card">
-          <h4>⚡ Fast Delivery</h4>
-          <p>Launch your website in 5–10 days.</p>
+      {/* ─── EXTRA: WHY SAM'S STUDIO? (BENEFITS) ─── */}
+      <div className="studio-benefits studio-reveal">
+        <div className="glass-card studio-benefit-card">
+          <h4>Fast Delivery</h4>
+          <p>Launch-ready websites delivered in 5–10 business days.</p>
         </div>
 
-        <div className="glass-card studio-stat-card">
-          <h4>📱 Mobile First</h4>
-          <p>Designed for phones before desktops.</p>
+        <div className="glass-card studio-benefit-card">
+          <h4>Mobile-First Experience</h4>
+          <p>Every website is designed for phones before desktops.</p>
         </div>
 
-        <div className="glass-card studio-stat-card">
-          <h4>🎨 Premium Design</h4>
-          <p>Custom UI inspired by modern SaaS products.</p>
+        <div className="glass-card studio-benefit-card">
+          <h4>Premium UI/UX</h4>
+          <p>Clean, modern interfaces inspired by today's best SaaS products.</p>
         </div>
 
-        <div className="glass-card studio-stat-card">
-          <h4>🔍 SEO Ready</h4>
-          <p>Optimized for Google search from day one.</p>
+        <div className="glass-card studio-benefit-card">
+          <h4>SEO Optimized</h4>
+          <p>Built with performance, accessibility, and Google search visibility in mind.</p>
         </div>
       </div>
 
