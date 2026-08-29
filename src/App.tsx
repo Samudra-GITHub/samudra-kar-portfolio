@@ -5,21 +5,27 @@ import {
   Download, Github, Instagram, Linkedin, Mail, MapPin, Menu,
   MoveRight, Palette, Send, Sparkles, Terminal, X,
 } from 'lucide-react';
-import { ErrorBoundary } from '@/components/error-boundary';
-import { Toaster } from '@/components/ui/toaster';
-import { TooltipProvider } from '@/components/ui/tooltip';
-import NotFound from '@/pages/not-found';
+
+// Temporarily commented out to fix broken imports
+// import { ErrorBoundary } from '@/components/error-boundary';
+// import { Toaster } from '@/components/ui/toaster';
+// import { TooltipProvider } from '@/components/ui/tooltip';
+// import NotFound from '@/pages/not-found';
+
 import { Route, Switch, Router as WouterRouter } from 'wouter';
+import "./studio.css";
+import { StudioSection } from "./studio-index";
 
 const queryClient = new QueryClient();
 
 const navItems = [
-  { label: 'Home',    href: '#hero'    },
-  { label: 'About',   href: '#about'   },
-  { label: 'Projects',href: '#projects'},
-  { label: 'Skills',  href: '#skills'  },
-  { label: 'Journey', href: '#journey' },
-  { label: 'Contact', href: '#contact' },
+  { label: "Home", href: "#hero" },
+  { label: "About", href: "#about" },
+  { label: "Studio", href: "#studio" }, // NEW
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Journey", href: "#journey" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const projects = [
@@ -40,7 +46,7 @@ const projects = [
     description: 'A futuristic desktop companion for voice conversations, automation, and thoughtful everyday assistance.',
     tags: ['Python', 'FastAPI', 'Speech AI'],
     type: 'Product / Voice',
-    link: 'mailto:samudrakar8@gmail.com?subject=RINTI%20walkthrough',
+    link: 'mailto:hi.samsstudio@gmail.com?subject=RINTI%20walkthrough',
     linkLabel: 'Request walkthrough',
   },
   {
@@ -49,7 +55,7 @@ const projects = [
     description: 'A weather forecasting experience where live API data meets a calm, glass-led interface.',
     tags: ['FastAPI', 'Weather API', 'Frontend'],
     type: 'Web / Data',
-    link: 'mailto:samudrakar8@gmail.com?subject=SkyCast%20walkthrough',
+    link: 'mailto:hi.samsstudio@gmail.com?subject=SkyCast%20walkthrough',
     linkLabel: 'Request walkthrough',
   },
   {
@@ -130,7 +136,7 @@ function SocialLinks() {
     <div className="social-row" aria-label="Social links">
       <a className="social-link" data-testid="link-github"    href="https://github.com/Samudra-GITHub" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={16} /></a>
       <a className="social-link" data-testid="link-linkedin"  href="https://linkedin.com/in/samudra-kar" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a>
-      <a className="social-link" data-testid="link-email"     href="mailto:samudrakar8@gmail.com" aria-label="Email Samudra"><Mail size={16} /></a>
+      <a className="social-link" data-testid="link-email"     href="mailto:hi.samsstudio@gmail.com" aria-label="Email Samudra"><Mail size={16} /></a>
       <a className="social-link" data-testid="link-instagram" href="https://instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={16} /></a>
     </div>
   );
@@ -188,10 +194,11 @@ function Hero() {
           <strong>Kar.</strong>
         </h1>
         <span className="hero-role">
-          Computer Science Student &nbsp;/&nbsp; AI Engineer &nbsp;/&nbsp; UI/UX Designer
+          Computer Science Student / AI Engineer / Founder of Sam's Studio
         </span>
         <p className="hero-description">
-          I build <b>intelligent systems</b> and interfaces that make complex technology feel clear, useful, and human.
+          I build intelligent systems and premium websites for startups and local
+          businesses — combining thoughtful UI/UX design with modern engineering.
         </p>
         <div className="hero-actions">
           <a className="button button-primary" href="#projects" data-testid="link-view-projects">
@@ -199,6 +206,9 @@ function Hero() {
           </a>
           <a className="button button-ghost" href="/resume.pdf" download data-testid="link-download-resume">
             Download Resume <Download size={15} />
+          </a>
+          <a className="button button-secondary" href="#studio">
+            Start a Project <ArrowUpRight size={15} />
           </a>
         </div>
         <div className="hero-meta">
@@ -414,7 +424,7 @@ function Contact() {
         <div className="contact-copy">
           <p>Whether it's an internship, hackathon, startup idea, or collaboration, I'd love to hear what you're working on.</p>
           <div className="contact-details">
-            <div className="contact-detail"><Mail size={16} /><a href="mailto:samudrakar8@gmail.com" data-testid="link-contact-email">samudrakar8@gmail.com</a></div>
+            <div className="contact-detail"><Mail size={16} /><a href="mailto:hi.samsstudio@gmail.com" data-testid="link-contact-email">hi.samsstudio@gmail.com</a></div>
             <div className="contact-detail"><MapPin size={16} /><span>Bangalore, Karnataka, India</span></div>
             <div className="contact-detail"><Github size={16} /><a href="https://github.com/Samudra-GITHub" target="_blank" rel="noreferrer">github.com/Samudra-GITHub</a></div>
             <div className="contact-detail"><Linkedin size={16} /><a href="https://linkedin.com/in/samudra-kar" target="_blank" rel="noreferrer">linkedin.com/in/samudra-kar</a></div>
@@ -426,7 +436,7 @@ function Contact() {
             <div className="success-panel" role="status" data-testid="status-contact-success">
               <CheckCircle2 size={27} />
               <strong>Message received.</strong>
-              <span>This demo form is front-end only. For a real conversation, email me directly at samudrakar8@gmail.com.</span>
+              <span>This demo form is front-end only. For a real conversation, email me directly at hi.samsstudio@gmail.com.</span>
               <button type="button" data-testid="button-send-another" onClick={() => setSent(false)}>Send another message</button>
             </div>
           ) : (
@@ -500,17 +510,27 @@ function Portfolio() {
         <Navigation activeSection={activeSection} />
         <main className="page-main">
           <Hero />
+
           <About />
+
+          {/* =========================
+              SAM'S STUDIO
+             ========================= */}
+          <StudioSection />
+
           <Projects />
+
           <Skills />
+
           <Journey />
+
           <Contact />
         </main>
         <footer className="site-footer">
           <div>
             <span className="footer-brand">Samudra Kar</span>
             <br />
-            <span>AI Engineer · UI/UX Designer · Frontend Developer</span>
+            <span>Founder • Sam's Studio • AI Engineer • UI/UX Designer</span>
           </div>
           <span className="footer-note">Designed and developed in Bangalore / 2026</span>
           <a href="#hero" data-testid="link-footer-top">Back to top <ArrowUpRight size={13} /></a>
@@ -520,26 +540,23 @@ function Portfolio() {
   );
 }
 
-function Router() {
-  return (
-    <ErrorBoundary>
-      <Switch>
-        <Route path="/" component={Portfolio} />
-        <Route component={NotFound} />
-      </Switch>
-    </ErrorBoundary>
-  );
-}
+// function Router() {
+//   return (
+//     <ErrorBoundary>
+//       <Switch>
+//         <Route path="/" component={Portfolio} />
+//         <Route component={NotFound} />
+//       </Switch>
+//     </ErrorBoundary>
+//   );
+// }
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
+      <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+        <Portfolio />
+      </WouterRouter>
     </QueryClientProvider>
   );
 }

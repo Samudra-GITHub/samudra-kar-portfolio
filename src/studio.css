@@ -1,0 +1,392 @@
+/*
+ * studio.css
+ * ──────────
+ * Isolated styles for Sam's Studio section.
+ * Extends the existing AETHER X design language seamlessly.
+ */
+
+/* ─── SHARED UTILITIES ─── */
+.studio-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.studio-reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.studio-heading {
+  color: var(--clr-white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin: 70px 0 24px;
+}
+
+/* ─── SECTION 1: SERVICES ─── */
+.studio-services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.studio-service-card {
+  position: relative;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+}
+
+/* Animated Top Border */
+.studio-service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212,224,160,.45),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.studio-service-card:hover::before {
+  opacity: 1;
+}
+
+/* AETHER X Matched Hover */
+.studio-service-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212,224,160,.28);
+  background: rgba(255,255,255,.05);
+  box-shadow:
+    0 16px 48px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.studio-service-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(212, 224, 160, 0.08);
+  color: var(--clr-sage);
+  border: 1px solid rgba(212, 224, 160, 0.2);
+  margin-bottom: 24px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.studio-service-card:hover .studio-service-icon {
+  transform: scale(1.08);
+  background: rgba(212, 224, 160, 0.15);
+}
+
+.studio-service-card h3 {
+  margin: 0 0 6px;
+  color: var(--clr-white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.studio-price {
+  color: var(--clr-sage);
+  font-family: var(--app-font-mono);
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.studio-service-card p {
+  margin: 0;
+  color: var(--clr-w60);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+/* ─── SECTION 2: INDUSTRIES ─── */
+.studio-industries {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.studio-industry-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.studio-industry-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.studio-industry-visual {
+  height: 160px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  place-items: center;
+  color: var(--clr-w20);
+  margin-bottom: 20px;
+  transition: all 0.35s ease;
+}
+
+.studio-industry-card:hover .studio-industry-visual {
+  color: var(--clr-sage);
+  background: linear-gradient(145deg, rgba(212, 224, 160, 0.08), rgba(212, 224, 160, 0.02));
+  transform: scale(1.02);
+  box-shadow:
+    inset 0 0 40px rgba(212,224,160,.08),
+    0 10px 40px rgba(0,0,0,.28);
+}
+
+.studio-industry-content h4 {
+  margin: 0 0 8px;
+  color: var(--clr-white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.studio-industry-content p {
+  margin: 0 0 18px;
+  color: var(--clr-w60);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* ─── SECTION 3: PROCESS TIMELINE ─── */
+.studio-process {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 40px;
+  border: 1px solid var(--clr-border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.studio-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.studio-step-num {
+  color: var(--clr-sage);
+  font-family: var(--app-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: rgba(212, 224, 160, 0.12);
+  padding: 5px 9px;
+  border-radius: 6px;
+}
+
+.studio-step-name {
+  color: var(--clr-white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.studio-step-arrow {
+  color: var(--clr-w20);
+}
+
+/* ─── SECTION 4: CTA BANNER ─── */
+.studio-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  margin-top: 60px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--clr-border);
+  border-radius: 28px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.05),
+    rgba(255,255,255,.02)
+  );
+  backdrop-filter: blur(22px);
+}
+
+.studio-cta::before {
+  content: "";
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(
+    circle,
+    rgba(212,224,160,.15),
+    transparent 70%
+  );
+  filter: blur(80px);
+  top: -120px;
+  right: -80px;
+  z-index: -1;
+}
+
+.studio-cta-title {
+  margin: 0 0 26px;
+  color: var(--clr-white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+/* =========================
+   AETHER X Ambient Background
+========================= */
+
+.studio-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.studio-section__ambient {
+  position: absolute;
+  inset: auto;
+  width: 420px;
+  height: 420px;
+  border-radius: 999px;
+  filter: blur(120px);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.studio-section__ambient--sage {
+  top: -120px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(212,224,160,.35), transparent 70%);
+}
+
+.studio-section__ambient--yellow {
+  bottom: -140px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(238,224,122,.25), transparent 70%);
+}
+
+/* =========================
+   CTA Button Polish
+========================= */
+
+.studio-cta .button {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.studio-cta .button:hover {
+  transform: translateY(-3px);
+  border-color: rgba(212, 224, 160, 0.35);
+  box-shadow:
+    0 12px 36px rgba(212, 224, 160, 0.08),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* =========================
+   Glass Glow Layer
+========================= */
+
+.studio-service-card,
+.studio-industry-card,
+.studio-cta {
+  overflow: hidden;
+}
+
+.studio-service-card::after,
+.studio-industry-card::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,.06),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+
+.studio-service-card:hover::after,
+.studio-industry-card:hover::after {
+  opacity: 1;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 980px) {
+  .studio-services,
+  .studio-industries {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .studio-section {
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+
+  .studio-services,
+  .studio-industries {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .studio-service-card,
+  .studio-industry-card {
+    padding: 24px;
+  }
+
+  .studio-process {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .studio-step-arrow {
+    transform: rotate(90deg);
+    margin-left: 18px;
+  }
+
+  .studio-cta {
+    padding: 48px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
