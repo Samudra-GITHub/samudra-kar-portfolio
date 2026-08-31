@@ -61,7 +61,7 @@ const projects = [
   },
   {
     number: '04 / PERSONAL SYSTEM',
-    title: 'AETHER X',
+    title: 'My Portfolio Website',
     description: 'This portfolio: a quiet command center for the work, questions, and systems still taking shape.',
     tags: ['React', 'TypeScript', 'CSS'],
     type: 'Web / Interface',
@@ -83,7 +83,7 @@ const journey = [
   { year: '2026', phase: 'IN ORBIT',     title: 'AkashaLens & RINTI',                    text: 'Focused on AI engineering, satellite image reconstruction, voice AI, and preparing for software engineering internships.' },
 ];
 
-/* ── Editorial frosted glass visual (replaces the AI orb) ── */
+/* ── Editorial frosted glass visual ── */
 function EditorialVisual() {
   return (
     <div className="hero-visual" aria-hidden="true">
@@ -93,7 +93,7 @@ function EditorialVisual() {
         <div className="gc-panel gc-main" />
         <div className="gc-content">
           <div>
-            <p className="gc-label">AETHER X / Active systems</p>
+            <p className="gc-label">Samudra Kar / Active systems</p>
             <h2 className="gc-headline">
               Build.<br />
               Design.<br />
@@ -149,8 +149,8 @@ function Navigation({ activeSection }: { activeSection: string }) {
     <nav className="site-nav" data-testid="site-navigation">
       <a className="wordmark" href="#hero" data-testid="link-wordmark" onClick={() => setMenuOpen(false)}>
         <span className="wordmark-mark">SK</span>
-        <span>AETHER X</span>
-        <span className="wordmark-sub">2.0</span>
+        <span>Samudra Kar</span>
+        <span className="wordmark-sub">PORTFOLIO</span>
       </a>
       <div className={`nav-links ${menuOpen ? 'is-open' : ''}`}>
         {navItems.map((item) => (
@@ -186,6 +186,7 @@ function Hero() {
   return (
     <section className="hero" id="hero" data-section="hero">
       <div className="hero-copy reveal is-visible">
+        <div className="eyebrow" style={{ marginBottom: '1.5rem' }}>/ Portfolio</div>
         <div className="availability">
           <span className="availability-dot" />
           AVAILABLE FOR INTERNSHIPS
@@ -194,12 +195,8 @@ function Hero() {
           Samudra
           <strong>Kar.</strong>
         </h1>
-        <span className="hero-role">
-          Computer Science Student / AI Engineer / Founder of Sam's Studio
-        </span>
-        <p className="hero-description">
-          I build intelligent systems and premium websites for startups and local
-          businesses — combining thoughtful UI/UX design with modern engineering.
+        <p className="hero-description" style={{ marginTop: '1rem' }}>
+          Computer Science student, UI/UX designer, frontend developer, and founder of Sam's Studio.
         </p>
         <div className="hero-actions">
           <a className="button button-primary" href="#projects" data-testid="link-view-projects">
@@ -216,7 +213,7 @@ function Hero() {
           <span className="hero-meta-line" />
           Bangalore, India
           <span className="hero-meta-line" />
-          2026 / OPEN TO WORK
+          {new Date().getFullYear()} / OPEN TO WORK
         </div>
         <SocialLinks />
       </div>
@@ -605,9 +602,9 @@ function Portfolio() {
           <div>
             <span className="footer-brand">Samudra Kar</span>
             <br />
-            <span>Founder • Sam's Studio • AI Engineer • UI/UX Designer</span>
+            <span>Designed & Developed by Samudra Kar.</span>
           </div>
-          <span className="footer-note">Designed and developed in Bangalore / 2026</span>
+          <span className="footer-note">© {new Date().getFullYear()}</span>
           <a href="#hero" data-testid="link-footer-top">Back to top <ArrowUpRight size={13} /></a>
         </footer>
       </div>
