@@ -1,55 +1,37 @@
-import { useEffect } from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ArrowUpRight } from 'lucide-react';
-import { Router as WouterRouter } from 'wouter';
+import { Link, Route, Router as WouterRouter, Switch } from 'wouter';
 
 import { Navigation } from '@/components/Navigation';
 import { CustomCursor } from '@/components/CustomCursor';
-import { Hero } from '@/sections/Hero';
-import { About } from '@/sections/About';
-import { HowIWork } from '@/sections/HowIWork';
-import { Projects } from '@/sections/Projects';
-import { Skills } from '@/sections/Skills';
-import { Experiments } from '@/sections/Experiments';
-import { Journey } from '@/sections/Journey';
-import { Snapshot } from '@/sections/Snapshot';
-import { Contact } from '@/sections/Contact';
-import { StudioSection } from '@/sections/studio';
+import { Preloader } from '@/components/Preloader';
+import { SoundToggle } from '@/components/SoundToggle';
+import { SectionSound } from '@/components/SectionSound';
+import { SceneLayer } from '@/three/SceneLayer';
+import { Portfolio } from '@/pages/Portfolio';
+import { Studio } from '@/pages/Studio';
 import '@/sections/studio/studio.css';
 
-const queryClient = new QueryClient();
-
-function Portfolio() {
-  useEffect(() => {
-    const revealObserver = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('is-visible'); }),
-      { threshold: 0.12 },
-    );
-    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
-    return () => revealObserver.disconnect();
-  }, []);
-
+/**
+ * The world shell. Everything environmental — instrument grid, WebGL
+ * reconstruction field, scrim, cursor, sound — persists across routes so
+ * navigating never tears the environment down and rebuilds it.
+ */
+function WorldShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="site-shell">
+      <Preloader />
       <CustomCursor />
       <div className="site-background" aria-hidden="true">
-        <img src="/forest-background.jpg" alt="" className="site-background-image" />
+        <div className="site-background-grid" />
         <div className="site-background-overlay" />
       </div>
+      <SceneLayer />
+      <div className="scene-scrim" aria-hidden="true" />
+      <SoundToggle />
+      <SectionSound />
       <div className="site-content">
         <Navigation />
-        <main className="page-main">
-          <Hero />
-          <About />
-          <StudioSection />
-          <Projects />
-          <Skills />
-          <HowIWork />
-          <Experiments />
-          <Journey />
-          <Snapshot />
-          <Contact />
-        </main>
+        {children}
         <footer className="site-footer">
           <div className="footer-identity">
             <span className="footer-brand">Samudra Kar</span>
@@ -58,6 +40,9 @@ function Portfolio() {
           </div>
           <p className="footer-statement">Still learning. Still building.</p>
           <div className="footer-meta">
+            <Link href="/studio" className="footer-link" data-cursor-hover>
+              Studio
+            </Link>
             <span className="footer-note">© {new Date().getFullYear()}</span>
             <a href="#hero" data-testid="link-footer-top" data-cursor-hover>
               Back to top <ArrowUpRight size={13} />
@@ -71,11 +56,14 @@ function Portfolio() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-        <Portfolio />
-      </WouterRouter>
-    </QueryClientProvider>
+    <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+      <WorldShell>
+        <Switch>
+          <Route path="/studio" component={Studio} />
+          <Route component={Portfolio} />
+        </Switch>
+      </WorldShell>
+    </WouterRouter>
   );
 }
 

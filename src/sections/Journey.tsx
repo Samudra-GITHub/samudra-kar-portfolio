@@ -1,81 +1,93 @@
 import { useRef } from 'react';
-import { motion, useScroll, type Variants } from 'framer-motion';
-import { Reveal } from '@/components/Reveal';
-import { journey } from '@/lib/data';
+import { cubicBezier, motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
+import { journey, journeyWindows } from '@/lib/data';
+import { stops } from '@/hooks/useSectionProgress';
 
-const container: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
-};
+/** ease-out quart as a cubic-bezier, applied inside the keyframes rather than
+ *  springing the scroll value — arrives quickly, settles slowly. */
+const EASE_OUT_QUART = cubicBezier(0.25, 1, 0.5, 1);
 
-const item: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-};
+function YearBlock({
+  entry,
+  index,
+  progress,
+}: {
+  entry: (typeof journey)[number];
+  index: number;
+  progress: MotionValue<number>;
+}) {
+  // [fadeIn, holdStart, holdEnd, fadeOut] — long hold, short transitions
+  const [fadeIn, holdStart, holdEnd, fadeOut] = journeyWindows[index];
+  const span = holdEnd - holdStart;
 
-function TimelineNode({ item: entry, index }: { item: (typeof journey)[number]; index: number }) {
+  const opacity = useTransform(
+    progress,
+    stops([fadeIn, holdStart, holdEnd, fadeOut]),
+    [0, 1, 1, 0],
+    { ease: EASE_OUT_QUART },
+  );
+  const y = useTransform(progress, stops([fadeIn, holdStart]), [30, 0], {
+    ease: EASE_OUT_QUART,
+  });
+  // secondary detail lands a beat after the heading and leaves a beat earlier,
+  // so each year arrives in two steps rather than all at once
+  const detailOpacity = useTransform(
+    progress,
+    stops([holdStart - span * 0.1, holdStart + span * 0.22, holdEnd - span * 0.16, holdEnd]),
+    [0, 1, 1, 0],
+    { ease: EASE_OUT_QUART },
+  );
+
   return (
-    <motion.article
-      className="timeline-item"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.35 }}
-      variants={container}
-      transition={{ delay: index * 0.05 }}
-    >
-      <motion.div variants={item} className="timeline-year">
-        {entry.year}
-      </motion.div>
-      <motion.span
-        className="timeline-dot"
-        initial={{ scale: 0.6, opacity: 0.5 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, amount: 0.8 }}
-        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      />
-      <div className="timeline-content">
-        <motion.small variants={item}>{entry.phase}</motion.small>
-        <motion.h3 variants={item}>{entry.title}</motion.h3>
-        <motion.p variants={item} className="timeline-intro">
-          {entry.intro}
-        </motion.p>
-        <motion.div variants={item} className="timeline-groups">
-          {entry.groups.map((group) => (
-            <div className="timeline-group" key={group.label}>
-              <span className="timeline-group-label">{group.label}</span>
-              <ul>
-                {group.items.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </motion.div>
+    <motion.article className="orbit-year" style={{ opacity, y }}>
+      <div className="orbit-year-head">
+        <span className="orbit-year-number">{entry.year}</span>
+        <span className="orbit-year-phase">{entry.phase}</span>
       </div>
+      <h3>{entry.title}</h3>
+      <p className="orbit-year-intro">{entry.intro}</p>
+
+      <motion.div className="orbit-year-groups" style={{ opacity: detailOpacity }}>
+        {entry.groups.map((group) => (
+          <div className="orbit-group" key={group.label}>
+            <span className="orbit-group-label">{group.label}</span>
+            <ul>
+              {group.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </motion.div>
     </motion.article>
   );
 }
 
 export function Journey() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start 0.8', 'end 0.35'] });
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
+
+  // Lenis already damps scroll — no spring here. All smoothing lives in the
+  // easing curves applied inside each transform.
+  const progress = scrollYProgress;
+
+  const headOpacity = useTransform(progress, stops([0, 0.06, 0.9, 1]), [0, 1, 1, 0], {
+    ease: EASE_OUT_QUART,
+  });
 
   return (
-    <section className="section section-band" id="journey" data-section="journey">
-      <div className="journey-wrap">
-        <Reveal className="journey-copy">
-          <div className="eyebrow">/ My journey</div>
+    <section className="orbit-scene" id="journey" data-section="journey" ref={ref}>
+      <div className="orbit-sticky">
+        <motion.div className="orbit-head" style={{ opacity: headOpacity }}>
+          <div className="eyebrow">/ Journey</div>
           <h2 className="section-title">
-            Where I'm <span>heading.</span>
+            Where I&apos;m <span>heading.</span>
           </h2>
-          <p>A timeline in progress. The direction is clear even when the next experiment isn't.</p>
-        </Reveal>
+        </motion.div>
 
-        <div className="timeline" ref={containerRef}>
-          <div className="timeline-line-base" aria-hidden="true" />
-          <motion.div className="timeline-line-fill" style={{ scaleY: scrollYProgress }} aria-hidden="true" />
-          {journey.map((entry, index) => (
-            <TimelineNode item={entry} index={index} key={entry.year} />
+        <div className="orbit-years">
+          {journey.map((entry, i) => (
+            <YearBlock key={entry.year} entry={entry} index={i} progress={progress} />
           ))}
         </div>
       </div>

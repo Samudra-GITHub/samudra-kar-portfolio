@@ -1,3 +1,4 @@
+import { Link } from 'wouter';
 import { Sparkles } from 'lucide-react';
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal';
 import { quickFacts } from '@/lib/data';
@@ -17,6 +18,19 @@ export function About() {
           tool.
         </p>
       </Reveal>
+
+      {/* moved out of the hero: the identity triad now earns a scroll reveal */}
+      <RevealGroup className="about-triad" stagger={0.12}>
+        <RevealItem>
+          <span className="about-triad-word">Student.</span>
+        </RevealItem>
+        <RevealItem>
+          <span className="about-triad-word">Builder.</span>
+        </RevealItem>
+        <RevealItem>
+          <span className="about-triad-word is-accent">Designer.</span>
+        </RevealItem>
+      </RevealGroup>
 
       <div className="about-layout">
         <Reveal className="about-body" delay={0.05}>
@@ -41,7 +55,11 @@ export function About() {
           <p>
             Outside of coursework and projects, I spend a fair amount of time on mobile photography — mostly because
             thinking about framing, light, and composition through a phone camera has quietly made me a better
-            interface designer too.
+            interface designer too. I also run a small studio,{' '}
+            <Link href="/studio" className="inline-link" data-cursor-hover>
+              Sam&apos;s Studio
+            </Link>
+            , designing and building websites for local businesses.
           </p>
           <div className="about-note">
             <Sparkles size={18} />

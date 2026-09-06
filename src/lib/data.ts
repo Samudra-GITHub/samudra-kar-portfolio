@@ -1,9 +1,9 @@
 import { BrainCircuit, Code2, Palette, Terminal, type LucideIcon } from 'lucide-react';
 
+/** Main narrative spine. Studio lives on its own route, linked from the footer. */
 export const navItems = [
   { label: 'Home', href: '#hero' },
   { label: 'About', href: '#about' },
-  { label: 'Studio', href: '#studio' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
   { label: 'Journey', href: '#journey' },
@@ -44,6 +44,8 @@ export const quickFacts: QuickFact[] = [
 ];
 
 export type Project = {
+  /** Stable slug — also links a card to its 3D artifact in the scene. */
+  id: string;
   number: string;
   title: string;
   category: string;
@@ -60,6 +62,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: 'akashalens',
     number: '01 / VISION SYSTEM',
     title: 'AkashaLens',
     category: 'Computer Vision · Deep Learning',
@@ -76,6 +79,7 @@ export const projects: Project[] = [
     linkLabel: 'View repository',
   },
   {
+    id: 'rinti',
     number: '02 / DESKTOP COMPANION',
     title: 'RINTI',
     category: 'AI Desktop Companion',
@@ -90,6 +94,7 @@ export const projects: Project[] = [
     linkLabel: 'Request walkthrough',
   },
   {
+    id: 'skycast',
     number: '03 / ATMOSPHERIC DATA',
     title: 'SkyCast',
     category: 'Weather · Frontend',
@@ -101,20 +106,6 @@ export const projects: Project[] = [
     status: 'A live personal project — a testbed for API integration and interface pacing.',
     link: 'mailto:hi.samsstudio@gmail.com?subject=SkyCast%20walkthrough',
     linkLabel: 'Request walkthrough',
-  },
-  {
-    number: '04 / PERSONAL SYSTEM',
-    title: 'AETHER X',
-    category: 'Portfolio · Interaction Design',
-    summary: 'This site — a cinematic React and Three.js system built around a forest-glass identity.',
-    problem:
-      'A portfolio needed to prove design sense and engineering ability at the same time, not just describe them in a bullet list.',
-    build:
-      'Built with React, TypeScript, and Three.js: modular sections, a custom 3D scene, scroll-driven motion, and a glass material system. The interaction design and the code behind it are the same project.',
-    tags: ['React', 'TypeScript', 'Three.js'],
-    status: 'Continuously evolving alongside the rest of the work.',
-    link: '#hero',
-    linkLabel: 'Back to top',
   },
 ];
 
@@ -203,6 +194,22 @@ export const journey: JourneyItem[] = [
       { label: 'Preparing for', items: ['Software engineering internships'] },
     ],
   },
+];
+
+/**
+ * Scroll windows for each journey year: [fadeIn, holdStart, holdEnd, fadeOut].
+ *
+ * Deliberately long holds with short transitions, so the years read as three
+ * discrete steps — 2024 settles and stays, then hands over to 2025, then 2026 —
+ * rather than one continuous crossfade. Neighbouring windows overlap exactly
+ * (0.30/0.40 and 0.62/0.72) so a year is always on screen and nothing gaps.
+ *
+ * Shared by the HTML copy and the 3D rings so the two can never disagree.
+ */
+export const journeyWindows: ReadonlyArray<readonly [number, number, number, number]> = [
+  [0.0, 0.05, 0.3, 0.4],
+  [0.3, 0.4, 0.62, 0.72],
+  [0.62, 0.72, 0.96, 1.0],
 ];
 
 export type Principle = {
