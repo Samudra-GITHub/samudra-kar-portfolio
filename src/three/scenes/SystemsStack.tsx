@@ -3,8 +3,8 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { ease, phase, type SectionProgress } from '@/hooks/useSectionProgress';
 
-const SIGNAL = '#8FE85F';
-const IVORY = '#E9ECE6';
+const SIGNAL = '#3ECFA8';
+const IVORY = '#EDE8DC';
 const AMBER = '#E8A33D';
 
 /**

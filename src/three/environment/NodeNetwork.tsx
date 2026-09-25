@@ -2,7 +2,7 @@ import { useMemo, useRef, type MutableRefObject } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-const SIGNAL = new THREE.Color('#8FE85F');
+const SIGNAL = new THREE.Color('#3ECFA8');
 const AMBER = new THREE.Color('#E8A33D');
 
 type Node = {

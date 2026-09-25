@@ -3,8 +3,8 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { pointFieldFragmentShader, pointFieldVertexShader } from '../shaders/pointField';
 
-const SIGNAL = '#8FE85F';
-const IVORY = '#E9ECE6';
+const SIGNAL = '#3ECFA8';
+const IVORY = '#EDE8DC';
 
 /**
  * The environment: a point cloud of terrain being scanned.

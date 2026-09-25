@@ -12,10 +12,10 @@ import type { StageState } from '@/hooks/useSceneStage';
 import type { QualitySettings } from '@/hooks/useDeviceTier';
 import type { SectionProgress } from '@/hooks/useSectionProgress';
 
-const SIGNAL = '#8FE85F';
-const IVORY = '#E9ECE6';
+const SIGNAL = '#3ECFA8';
+const IVORY = '#EDE8DC';
 const AMBER = '#E8A33D';
-const DEEP = '#070809';
+const DEEP = '#0A0908';
 
 /** Shared chase rate, so the whole environment resolves as one motion. */
 const DAMP = 0.045;

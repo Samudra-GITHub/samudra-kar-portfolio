@@ -10,8 +10,8 @@ import {
 } from '@/hooks/useSectionProgress';
 import { journey, journeyWindows } from '@/lib/data';
 
-const SIGNAL = new THREE.Color('#8FE85F');
-const IVORY = new THREE.Color('#E9ECE6');
+const SIGNAL = new THREE.Color('#3ECFA8');
+const IVORY = new THREE.Color('#EDE8DC');
 const AMBER = new THREE.Color('#E8A33D');
 
 /* ── Tuning knobs ────────────────────────────────────────────
