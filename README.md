@@ -1,6 +1,22 @@
+<div align="center">
+
 # Samudra Kar, Portfolio
 
-> An interactive single-page portfolio with a persistent WebGL scene, procedural sound and a narrative section flow.
+**An interactive portfolio with a persistent WebGL scene and procedural sound.**
+
+React Three Fiber · custom shaders · adaptive quality · narrative sections
+
+<br />
+
+[**Live site**](https://mudra-kar-portfolio-g46m.vercel.app) &nbsp;·&nbsp; **[Overview](#overview)** &nbsp;·&nbsp; **[Features](#features)** &nbsp;·&nbsp; **[Getting started](#getting-started)** &nbsp;·&nbsp; **[Architecture](#architecture)** &nbsp;·&nbsp; **[Structure](#project-structure)**
+
+<br />
+
+![React](https://img.shields.io/badge/React-19-20232a?style=flat-square&logo=react&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-7-646cff?style=flat-square&logo=vite&logoColor=white) ![Three.js](https://img.shields.io/badge/Three.js-r185-000000?style=flat-square&logo=threedotjs&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind-4-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white) ![Framer_Motion](https://img.shields.io/badge/Framer_Motion-animation-0055ff?style=flat-square&logo=framer&logoColor=white) ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+
+</div>
+
+---
 
 ## Overview
 
@@ -45,7 +61,6 @@ samudra-kar-portfolio/
 │   ├── hooks/              # Device tier, reduced motion, section progress, ...
 │   ├── lib/                # data.ts (content), audio.ts (procedural audio)
 │   └── index.css
-├── assets/                 # README placeholder graphics
 ├── vite.config.ts          # "@" alias to src/, dev server on :5173
 └── package.json
 ```
@@ -87,15 +102,11 @@ These are bundled into the client build, so use only the public key from EmailJS
 
 No deployment configuration file is included. The project is a static Vite build and the live site is hosted on Vercel.
 
-## Screenshots
-
-`assets/` holds placeholder graphics only, so no screenshots are shown.
-
 ## Future Improvements
 
 - A dedicated photography section
 - Expand the Studio page
-- Replace placeholder graphics with real screenshots
+- Add real screenshots to this README
 
 ## License
 
