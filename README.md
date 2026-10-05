@@ -1,148 +1,102 @@
-# Portfolio V2
+# Samudra Kar, Portfolio
 
-**Interactive developer portfolio.**
+> An interactive single-page portfolio with a persistent WebGL scene, procedural sound and a narrative section flow.
 
-A personal site built to demonstrate range across UI/UX design, full-stack engineering, and 3D/motion work — not a template with swapped-in project cards.
+## Overview
 
-<br/>
+A personal site for an AI engineer, UI/UX designer and frontend developer, built to show range rather than fill a template with project cards. It is a React + Vite single-page app, routed with `wouter`, organised as a sequence of narrative sections. A "world shell" keeps the background grid, WebGL reconstruction field, cursor and sound alive across routes, so navigating never tears the environment down.
 
-<img src="./assets/hero-placeholder.svg" width="100%" alt="Portfolio V2 hero" />
+**Live site:** [mudra-kar-portfolio-g46m.vercel.app](https://mudra-kar-portfolio-g46m.vercel.app)
 
-<br/>
+## Features
 
-## Live Site
-
-**[mudra-kar-portfolio-g46m.vercel.app →](https://mudra-kar-portfolio-g46m.vercel.app)**
-
-<br/>
-
-## Preview
-
-<table width="100%">
-<tr>
-<td width="50%"><img src="./assets/screenshot-placeholder.svg" width="100%" alt="Home" /><br/><sub align="center">Home</sub></td>
-<td width="50%"><img src="./assets/screenshot-placeholder.svg" width="100%" alt="Aether scene" /><br/><sub align="center">Aether 3D scene</sub></td>
-</tr>
-</table>
-
-<br/>
-
-## About
-
-Built as a single-page application (React + Vite), routed with `wouter`, and structured around a set of narrative sections rather than a flat project grid.
-
-<br/>
-
-## Projects
-
-Project detail is presented through a modal (`ProjectModal.tsx`) rather than a separate page per project, keeping the scroll experience uninterrupted.
-
-<br/>
-
-## Motion Design
-
-Framer Motion drives section transitions and micro-interactions; **Lenis** handles smooth scrolling site-wide.
-
-<br/>
-
-## Three.js
-
-A custom 3D layer (`src/three/AetherScene.tsx`) — built on React Three Fiber, Drei, and postprocessing — renders a persistent background scene with custom shaders and environment lighting, not a stock Three.js example.
-
-<br/>
-
-## Photography
-
-Not yet a dedicated section — see [Roadmap](#roadmap).
-
-<br/>
-
-## Contact
-
-The contact form sends through **EmailJS** directly from the client (`src/sections/Contact.tsx`) — no backend required.
-
-<br/>
-
-## Folder Structure
-
-```
-portfolio-v2/
-├── src/
-│   ├── App.tsx
-│   ├── main.tsx
-│   ├── pages/
-│   │   ├── Portfolio.tsx
-│   │   └── Studio.tsx
-│   ├── sections/
-│   │   ├── Hero.tsx
-│   │   ├── About.tsx
-│   │   ├── Journey.tsx
-│   │   ├── Manifesto.tsx
-│   │   ├── Skills.tsx
-│   │   ├── Systems.tsx
-│   │   ├── Projects.tsx
-│   │   ├── ProjectModal.tsx
-│   │   ├── HowIWork.tsx
-│   │   ├── Experiments.tsx
-│   │   ├── Snapshot.tsx
-│   │   └── Contact.tsx
-│   ├── three/
-│   │   ├── AetherScene.tsx
-│   │   ├── SceneLayer.tsx
-│   │   ├── environment/
-│   │   ├── scenes/
-│   │   └── shaders/
-│   ├── components/
-│   ├── hooks/
-│   └── lib/
-└── public/
-```
-
-<br/>
+- **Narrative sections**: Hero, About, Journey, Manifesto, Skills, Systems, Projects, How I Work, Experiments, Snapshot and Contact
+- **Projects in a modal** (`ProjectModal`), so the scroll is never interrupted by page loads
+- **Studio page** at `/studio`
+- **Persistent 3D layer** built with React Three Fiber, Drei and postprocessing, with custom shaders (point field, scan grid), a node network and a reconstruction field
+- **Adaptive quality**: a device-tier hook (`low` / `medium` / `high`) scales particle counts and drops expensive post-processing on weaker devices
+- **Procedural audio**: all sound is synthesised at runtime with the Web Audio API, muted by default and started only by the toggle
+- **Motion**: Framer Motion for transitions, Lenis for smooth scrolling, custom cursor and magnetic buttons, with reduced-motion support
+- **Contact form** sending directly from the browser through EmailJS
+- Downloadable resume (`public/resume.pdf`)
 
 ## Tech Stack
 
-`Vite` · `React 19` · `TypeScript` · `Three.js` · `React Three Fiber` · `Drei` · `Framer Motion` · `Tailwind CSS 4` · `Lenis` · `EmailJS`
+| Area | Technology |
+| --- | --- |
+| Framework | React 19, TypeScript, Vite 7, `wouter` routing |
+| Styling | Tailwind CSS v4, `tw-animate-css` |
+| 3D | Three.js, React Three Fiber, Drei, `@react-three/postprocessing` |
+| Motion | Framer Motion, Lenis |
+| Email | EmailJS (client-side) |
 
-<br/>
+## Project Structure
 
-## Setup
+```
+samudra-kar-portfolio/
+├── index.html
+├── public/                 # resume.pdf, forest-background.jpg
+├── src/
+│   ├── main.tsx  App.tsx   # Entry and world shell (routes: /, /studio)
+│   ├── pages/              # Portfolio, Studio
+│   ├── sections/           # Hero ... Contact, ProjectModal, studio/
+│   ├── three/              # SceneLayer, AetherScene, environment/, scenes/, shaders/
+│   ├── components/         # Navigation, Preloader, CustomCursor, SoundToggle, ...
+│   ├── hooks/              # Device tier, reduced motion, section progress, ...
+│   ├── lib/                # data.ts (content), audio.ts (procedural audio)
+│   └── index.css
+├── assets/                 # README placeholder graphics
+├── vite.config.ts          # "@" alias to src/, dev server on :5173
+└── package.json
+```
+
+## Getting Started
+
+Requires Node.js and npm.
 
 ```bash
 git clone https://github.com/Samudra-GITHub/samudra-kar-portfolio.git
 cd samudra-kar-portfolio
 npm install
-npm run dev
+npm run dev          # http://localhost:5173
 ```
 
-<br/>
+| Command | What it does |
+| --- | --- |
+| `npm run build` | Production build |
+| `npm run preview` | Preview the build |
+| `npm run typecheck` | Type-check with `tsc --noEmit` |
 
-## Environment Variables
+## Configuration
 
-```bash
-VITE_EMAILJS_SERVICE_ID=
-VITE_EMAILJS_TEMPLATE_ID=
-VITE_EMAILJS_PUBLIC_KEY=
-```
+Copy `.env.example` to `.env` to enable the contact form. The rest of the site works without it.
 
-Required only for the contact form to actually send mail — the rest of the site runs without them.
+| Variable | Purpose |
+| --- | --- |
+| `VITE_EMAILJS_SERVICE_ID` | EmailJS service |
+| `VITE_EMAILJS_TEMPLATE_ID` | EmailJS template |
+| `VITE_EMAILJS_PUBLIC_KEY` | EmailJS public key |
 
-<br/>
+These are bundled into the client build, so use only the public key from EmailJS.
 
-## Roadmap
+## Architecture
 
-- [x] Hero, About, Journey, Manifesto, Skills, Systems, Projects sections
-- [x] Custom Three.js Aether scene with shaders
-- [x] EmailJS-powered contact form
-- [ ] Dedicated photography section
-- [ ] Studio page expansion
+`App.tsx` wraps all routes in a `WorldShell` that mounts the preloader, cursor, background, `SceneLayer` and sound once. Page content swaps inside it. Project and copy content lives in `src/lib/data.ts`. The 3D layer reads the device tier from `useDeviceTier` to pick density and effects.
 
-<br/>
+## Deployment
+
+No deployment configuration file is included. The project is a static Vite build and the live site is hosted on Vercel.
+
+## Screenshots
+
+`assets/` holds placeholder graphics only, so no screenshots are shown.
+
+## Future Improvements
+
+- A dedicated photography section
+- Expand the Studio page
+- Replace placeholder graphics with real screenshots
 
 ## License
 
-MIT — see [LICENSE](./LICENSE).
-
-<br/>
-
-<sub>Part of the Sams Studio product ecosystem. See the [profile](https://github.com/Samudra-GITHub) for the full lineup.</sub>
+MIT, see [LICENSE](LICENSE).
