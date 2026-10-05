@@ -1,127 +1,144 @@
 <div align="center">
 
-# Samudra Kar, Portfolio
-
-**An interactive portfolio with a persistent WebGL scene and procedural sound.**
-
-React Three Fiber · custom shaders · adaptive quality · narrative sections
+<img src="docs/screenshots/desktop-hero.webp" alt="Samudra Kar's portfolio hero: the name over a WebGL point field and instrument grid, with View Projects, Download Resume and Let's connect buttons" width="100%" />
 
 <br />
 
-**[Overview](#overview)** &nbsp;·&nbsp; **[Features](#features)** &nbsp;·&nbsp; **[Getting started](#getting-started)** &nbsp;·&nbsp; **[Architecture](#architecture)** &nbsp;·&nbsp; **[Structure](#project-structure)**
+![React](https://img.shields.io/badge/React-19-20232a?style=flat-square&logo=react&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-7-646cff?style=flat-square&logo=vite&logoColor=white) ![Three.js](https://img.shields.io/badge/Three.js-r185-000000?style=flat-square&logo=threedotjs&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind-4-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white) ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 <br />
 
-![React](https://img.shields.io/badge/React-19-20232a?style=flat-square&logo=react&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-7-646cff?style=flat-square&logo=vite&logoColor=white) ![Three.js](https://img.shields.io/badge/Three.js-r185-000000?style=flat-square&logo=threedotjs&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind-4-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white) ![Framer_Motion](https://img.shields.io/badge/Framer_Motion-animation-0055ff?style=flat-square&logo=framer&logoColor=white) ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+**[Run it](#run-it)** &nbsp;·&nbsp; **[Features](#features)** &nbsp;·&nbsp; **[Architecture](#architecture)** &nbsp;·&nbsp; **[Installation](#installation)** &nbsp;·&nbsp; **[Limitations](#limitations)**
 
 </div>
 
 ---
 
-## Overview
-
-A personal site for an AI engineer, UI/UX designer and frontend developer, built to show range rather than fill a template with project cards. It is a React + Vite single-page app, routed with `wouter`, organised as a sequence of narrative sections. A "world shell" keeps the background grid, WebGL reconstruction field, cursor and sound alive across routes, so navigating never tears the environment down.
-
-## Preview
-
 <p align="center">
-  <img src="docs/screenshots/desktop-hero.webp" width="880" alt="Portfolio hero: name, role and call-to-action buttons over the WebGL point field and grid" />
+  <img src="docs/screenshots/scroll.gif" alt="Scrolling from the hero through the featured projects to the systems stack, with the WebGL scene reacting" width="70%" />
 </p>
 
-<p align="center">
-  <img src="docs/screenshots/scroll.gif" width="640" alt="Scrolling from the hero through the projects section to the systems stack" />
-  <br />
-  <sub>Scrolling the site while the persistent 3D layer reacts. Recorded from the running app.</sub>
-</p>
+This is the portfolio of Samudra Kar, a computer science student working on AI, UI/UX design and frontend. It is built to show range rather than to fill a template with project cards: one persistent WebGL scene sits behind the whole site, and the sections are laid out as a narrative, from hero to about, journey, manifesto, skills, systems, projects and contact.
 
-| Projects | Systems |
-| :-- | :-- |
-| <img src="docs/screenshots/desktop-projects.webp" width="420" alt="Featured projects as stacked 3D cards" /> | <img src="docs/screenshots/desktop-systems.webp" width="420" alt="The stack shown as layered planes" /> |
+The environment (instrument grid, point field, cursor, sound) lives in a shell that never unmounts, so moving between pages doesn't tear the scene down and rebuild it. Sound is synthesised at runtime and muted by default.
+
+## Run it
+
+```bash
+git clone https://github.com/Samudra-GITHub/samudra-kar-portfolio.git
+cd samudra-kar-portfolio && npm install && npm run dev
+```
+
+Then open <http://localhost:5173>. The contact form needs EmailJS keys (see [Environment](#environment)); everything else works without them.
 
 ## Features
 
-- **Narrative sections**: Hero, About, Journey, Manifesto, Skills, Systems, Projects, How I Work, Experiments, Snapshot and Contact
-- **Projects in a modal** (`ProjectModal`), so the scroll is never interrupted by page loads
-- **Studio page** at `/studio`
-- **Persistent 3D layer** built with React Three Fiber, Drei and postprocessing, with custom shaders (point field, scan grid), a node network and a reconstruction field
-- **Adaptive quality**: a device-tier hook (`low` / `medium` / `high`) scales particle counts and drops expensive post-processing on weaker devices
-- **Procedural audio**: all sound is synthesised at runtime with the Web Audio API, muted by default and started only by the toggle
-- **Motion**: Framer Motion for transitions, Lenis for smooth scrolling, custom cursor and magnetic buttons, with reduced-motion support
-- **Contact form** sending directly from the browser through EmailJS
-- Downloadable resume (`public/resume.pdf`)
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/screenshots/desktop-projects.webp" alt="Featured projects shown as stacked 3D cards over the scene" width="100%" />
+      <h3>Projects as a stack of cards</h3>
+      <p>Featured projects sit on layered planes in the 3D scene. Details open in a modal, so the scroll is never interrupted by a page load.</p>
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/screenshots/desktop-systems.webp" alt="The tech stack shown as layered planes" width="100%" />
+      <h3>A persistent 3D layer</h3>
+      <p>React Three Fiber, Drei and postprocessing, with custom shaders (point field, scan grid), a node network and a reconstruction field. The scene responds to scroll.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/screenshots/desktop-hero.webp" alt="Hero section" width="100%" />
+      <h3>Adaptive quality</h3>
+      <p>A device-tier hook (<code>low</code>, <code>medium</code>, <code>high</code>) scales particle counts and drops expensive post-processing on weaker devices.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>Procedural sound</h3>
+      <p>Every sound is synthesised with the Web Audio API, with no audio files. It is muted by default and only the toggle starts it.</p>
+      <h3>Motion with manners</h3>
+      <p>Framer Motion for transitions, Lenis for smooth scrolling, a custom cursor and magnetic buttons, with reduced-motion support.</p>
+    </td>
+  </tr>
+</table>
 
-## Tech Stack
+**Also:** a Studio page at `/studio`; a contact form that sends from the browser through EmailJS; a downloadable resume (`public/resume.pdf`).
 
-| Area | Technology |
-| --- | --- |
+## Tech stack
+
+| Layer | Technology |
+| :-- | :-- |
 | Framework | React 19, TypeScript, Vite 7, `wouter` routing |
-| Styling | Tailwind CSS v4, `tw-animate-css` |
+| Styling | Tailwind CSS 4, `tw-animate-css` |
 | 3D | Three.js, React Three Fiber, Drei, `@react-three/postprocessing` |
 | Motion | Framer Motion, Lenis |
 | Email | EmailJS (client-side) |
 
-## Project Structure
+## Architecture
 
+```mermaid
+flowchart LR
+    A[App.tsx] --> W[WorldShell<br/>mounted once]
+    W --> E[Preloader · Cursor · Background · SceneLayer · Sound]
+    W --> R{wouter routes}
+    R -->|/| P[Portfolio sections]
+    R -->|/studio| S[Studio page]
+    E --> Q[useDeviceTier<br/>quality settings]
 ```
+
+`App.tsx` wraps all routes in a `WorldShell` that mounts the preloader, cursor, background, `SceneLayer` and sound once, so page content swaps inside a stable environment. Project and copy content lives in `src/lib/data.ts`. The 3D layer reads the device tier from `useDeviceTier` to pick density and effects.
+
+```text
 samudra-kar-portfolio/
 ├── index.html
-├── public/                 # resume.pdf, forest-background.jpg
+├── public/         resume.pdf, forest-background.jpg
 ├── src/
-│   ├── main.tsx  App.tsx   # Entry and world shell (routes: /, /studio)
-│   ├── pages/              # Portfolio, Studio
-│   ├── sections/           # Hero ... Contact, ProjectModal, studio/
-│   ├── three/              # SceneLayer, AetherScene, environment/, scenes/, shaders/
-│   ├── components/         # Navigation, Preloader, CustomCursor, SoundToggle, ...
-│   ├── hooks/              # Device tier, reduced motion, section progress, ...
-│   ├── lib/                # data.ts (content), audio.ts (procedural audio)
-│   └── index.css
-├── vite.config.ts          # "@" alias to src/, dev server on :5173
-└── package.json
+│   ├── App.tsx     World shell and routes (/ and /studio)
+│   ├── pages/      Portfolio, Studio
+│   ├── sections/   Hero ... Contact, ProjectModal, studio/
+│   ├── three/      SceneLayer, AetherScene, environment/, scenes/, shaders/
+│   ├── components/ Navigation, Preloader, CustomCursor, SoundToggle, ...
+│   ├── hooks/      device tier, reduced motion, section progress, ...
+│   └── lib/        data.ts (content), audio.ts (procedural audio)
+├── docs/screenshots/
+└── vite.config.ts  "@" alias to src/, dev server on :5173
 ```
 
-## Getting Started
+## Installation
 
 Requires Node.js and npm.
 
 ```bash
-git clone https://github.com/Samudra-GITHub/samudra-kar-portfolio.git
-cd samudra-kar-portfolio
 npm install
-npm run dev          # http://localhost:5173
 ```
 
 | Command | What it does |
-| --- | --- |
+| :-- | :-- |
+| `npm run dev` | Start Vite on port 5173 |
 | `npm run build` | Production build |
 | `npm run preview` | Preview the build |
 | `npm run typecheck` | Type-check with `tsc --noEmit` |
 
-## Configuration
+### Environment
 
-Copy `.env.example` to `.env` to enable the contact form. The rest of the site works without it.
+Copy `.env.example` to `.env` to enable the contact form.
 
 | Variable | Purpose |
-| --- | --- |
+| :-- | :-- |
 | `VITE_EMAILJS_SERVICE_ID` | EmailJS service |
 | `VITE_EMAILJS_TEMPLATE_ID` | EmailJS template |
 | `VITE_EMAILJS_PUBLIC_KEY` | EmailJS public key |
 
-These are bundled into the client build, so use only the public key from EmailJS.
+These are bundled into the client build, so use only EmailJS's public key.
 
-## Architecture
+### Deploy
 
-`App.tsx` wraps all routes in a `WorldShell` that mounts the preloader, cursor, background, `SceneLayer` and sound once. Page content swaps inside it. Project and copy content lives in `src/lib/data.ts`. The 3D layer reads the device tier from `useDeviceTier` to pick density and effects.
+No deployment configuration is included. It is a static Vite build (`npm run build`), and no public deployment is currently listed.
 
-## Deployment
+## Limitations
 
-No deployment configuration file is included. The project is a static Vite build (`npm run build`). No public deployment is listed.
-
-## Future Improvements
-
-- A dedicated photography section
-- Expand the Studio page
-- Add real screenshots to this README
+- The mobile layout has a known overlap in the hero: the social icons collide with the location text.
+- No dedicated photography section yet, and the Studio page is brief.
 
 ## License
 
-MIT, see [LICENSE](LICENSE).
+[MIT](LICENSE).
