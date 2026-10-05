@@ -8,7 +8,7 @@ React Three Fiber · custom shaders · adaptive quality · narrative sections
 
 <br />
 
-[**Live site**](https://mudra-kar-portfolio-g46m.vercel.app) &nbsp;·&nbsp; **[Overview](#overview)** &nbsp;·&nbsp; **[Features](#features)** &nbsp;·&nbsp; **[Getting started](#getting-started)** &nbsp;·&nbsp; **[Architecture](#architecture)** &nbsp;·&nbsp; **[Structure](#project-structure)**
+**[Overview](#overview)** &nbsp;·&nbsp; **[Features](#features)** &nbsp;·&nbsp; **[Getting started](#getting-started)** &nbsp;·&nbsp; **[Architecture](#architecture)** &nbsp;·&nbsp; **[Structure](#project-structure)**
 
 <br />
 
@@ -22,7 +22,21 @@ React Three Fiber · custom shaders · adaptive quality · narrative sections
 
 A personal site for an AI engineer, UI/UX designer and frontend developer, built to show range rather than fill a template with project cards. It is a React + Vite single-page app, routed with `wouter`, organised as a sequence of narrative sections. A "world shell" keeps the background grid, WebGL reconstruction field, cursor and sound alive across routes, so navigating never tears the environment down.
 
-**Live site:** [mudra-kar-portfolio-g46m.vercel.app](https://mudra-kar-portfolio-g46m.vercel.app)
+## Preview
+
+<p align="center">
+  <img src="docs/screenshots/desktop-hero.webp" width="880" alt="Portfolio hero: name, role and call-to-action buttons over the WebGL point field and grid" />
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/scroll.gif" width="640" alt="Scrolling from the hero through the projects section to the systems stack" />
+  <br />
+  <sub>Scrolling the site while the persistent 3D layer reacts. Recorded from the running app.</sub>
+</p>
+
+| Projects | Systems |
+| :-- | :-- |
+| <img src="docs/screenshots/desktop-projects.webp" width="420" alt="Featured projects as stacked 3D cards" /> | <img src="docs/screenshots/desktop-systems.webp" width="420" alt="The stack shown as layered planes" /> |
 
 ## Features
 
@@ -100,7 +114,7 @@ These are bundled into the client build, so use only the public key from EmailJS
 
 ## Deployment
 
-No deployment configuration file is included. The project is a static Vite build and the live site is hosted on Vercel.
+No deployment configuration file is included. The project is a static Vite build (`npm run build`). No public deployment is listed.
 
 ## Future Improvements
 
