@@ -6,3 +6,14 @@ dist/
 *.log
 .DS_Store
 .claude-flow/
+
+# Added by repository cleanup
+.claude/
+CLAUDE.md
+AGENTS.md
+
+# Added by repository cleanup
+Thumbs.db
+.vscode/
+.idea/
+*.tsbuildinfo
